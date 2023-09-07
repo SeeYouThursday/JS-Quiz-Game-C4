@@ -5,26 +5,24 @@
 // start button
 function createStartButton() {
   const genBtn = document.createElement("button");
-
-  console.log(genBtn);
-
   genBtn.textContent = "Start!";
-
   genBtn.setAttribute("id", "start");
-
   document.body.appendChild(genBtn);
-
-  // start button styling
-  genBtn.setAttribute("style");
+  genBtn.setAttribute("style", "display: block;");
+  // start btn styling is in css
 }
 createStartButton();
 
 // start button functionality
 
 function startGame() {
-  const start = document.getElementById(start);
-  start.onclick;
+  const start = document.getElementById("start");
+  start.addEventListener("click", function hideStartButton() {
+    start.setAttribute("style", "display: none;");
+  });
 }
+
+startGame();
 // high score display
 
 // timer display and functions

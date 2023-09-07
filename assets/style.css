@@ -1,0 +1,20 @@
+:root {
+  --questionColor: #678983;
+}
+
+body {
+  background-color: #e6ddc4;
+}
+
+#questionContainer {
+  background-color: var(--questionColor);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#start:hover {
+  background-color: purple;
+  border-style: none;
+}
