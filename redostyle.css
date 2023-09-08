@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#questionContainer {
+  display: none;
+}
+
+#answerChoices {
+  padding: 10px;
+}
+
+#answerChoices li {
+  padding: 5px;
+  margin: 5px;
+  background-color: yellow;
+  width: 200px;
+  border-radius: 5%;
+}
+
+#answerChoices li:hover {
+  background-color: aqua;
+}
