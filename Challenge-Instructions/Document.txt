@@ -1,0 +1,15 @@
+Question Functionality
+Question 1 displays after selecting the start button
+if (answerChoice === true) {
+append a "That's correct!" statement
+&& add 10 pts to the score
+&& move to the next question }
+else {
+append a "Get Rekt! Study More! Incorrect!" statement
+&& decrement timer by 5 seconds
+&& move to the next question}
+
+Once I reach the final question and the answer has been given, then I want to 
+display score
+display time left
+Input for initials to save high score
