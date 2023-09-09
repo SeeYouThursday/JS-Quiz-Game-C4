@@ -10,12 +10,13 @@ function setTime() {
     timeEl.textContent = secondsLeft + " seconds left.";
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
-      //   getGoodMessage();
+      getGoodMessage();
     }
   }, 1000);
 
-  //   function getGoodMessage() {
-  //     timeEl.textContent = " ";
+  function getGoodMessage() {
+    timeEl.textContent = "Get Rekt, Loser!";
+  }
   //     var imgEl = document.createElement("img");
   //     imgEl.setAttribute("src", "./images/image_1.jpg");
   //     mainEl.appendChild(imgEl);
