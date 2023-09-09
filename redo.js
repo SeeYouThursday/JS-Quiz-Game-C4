@@ -1,5 +1,26 @@
 // timer
+let timeEl = document.querySelector("#main");
+const timer = document.querySelector("#timer");
+let secondsLeft = 60;
 
+// setInterval just tells how to count down on  the timer
+function setTime() {
+  let timerInterval = setInterval(function () {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left.";
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      //   getGoodMessage();
+    }
+  }, 1000);
+
+  //   function getGoodMessage() {
+  //     timeEl.textContent = " ";
+  //     var imgEl = document.createElement("img");
+  //     imgEl.setAttribute("src", "./images/image_1.jpg");
+  //     mainEl.appendChild(imgEl);
+  //   }
+}
 // Start Button Functionality - EventListener
 
 function hideInstruction() {
@@ -19,6 +40,7 @@ function hideInstruction() {
     event.stopPropagation();
     // display first question
   });
+  setTime();
 }
 hideInstruction();
 

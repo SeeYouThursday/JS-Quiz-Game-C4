@@ -6,6 +6,7 @@ append a "That's correct!" statement
 && add 10 pts to the score
 activity 12 - increment/decrement
 && move to the next question }
+
 else {
 append a "Get Rekt! Study More! Incorrect!" statement
 && decrement timer by 5 seconds
