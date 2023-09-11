@@ -36,7 +36,6 @@ function hideInstructions() {
     // prevents Bubbling!
     event.stopPropagation();
     // display first question
-    initialQuestionDisplay();
   });
 }
 hideInstructions();
@@ -73,7 +72,6 @@ const Q4 = {
   opt2: "purple",
   opt3: "green",
   opt4: "red",
-  correct: "green",
 };
 
 const questions = [Q1, Q2, Q3, Q4];
@@ -95,16 +93,17 @@ function initialQuestionDisplay() {
   const choice4 = document.querySelector("#c4");
   choice4.textContent = questionSelect.opt4;
 }
-
-const userChoice = document.querySelector(".choice");
-userChoice.addEventListener("click", function (event) {
+// naming function outside of eventlistener
+function cycleQuestions() {
   if (generatedIndex < 5) {
     generatedIndex++;
     console.log(generatedIndex);
     initialQuestionDisplay();
   } else return;
-});
-
+}
+const userChoice = document.querySelector("#answerChoices");
+userChoice.addEventListener("click", cycleQuestions);
+// even though all of li have .choice, only the first element will trigger the event
 // Question Generation
 
 // // put in an if statement to check answers for each?
