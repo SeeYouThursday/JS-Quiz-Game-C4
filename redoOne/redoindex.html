@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Rekt! - A JS Game</title>
+    <link rel="stylesheet" href="./redostyle.css" />
+    <script src="./redo.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Get Rekt Kid! *JS Edition!</h1>
+      <h2 id="timer" data-timer="0">Time:</h2>
+      <h2><a>View High Score</a></h2>
+    </header>
+    <main>
+      <div id="main"></div>
+      <div id="time"></div>
+      <div class="startDisplay">
+        <div id="instruction-contents">
+          <h3>Instructions</h3>
+          <ul>
+            <li>
+              You will need to answer each multiple choice question regarding
+              Vanilla Javascript correctly or risk being berated by this simple
+              game.
+            </li>
+            <li>
+              Correct answers will earn you 10 points, while incorrect answers
+              will cause you to lose 5 seconds off of the clock.
+            </li>
+            <li>You will have 1 minute.</li>
+          </ul>
+          <button class="startDisplay" id="start">Start!</button>
+        </div>
+      </div>
+      <section id="questionContainer">
+        <h2 id="questionTitle"></h2>
+        <ol id="answerChoices">
+          <li id="c1" class="choice"></li>
+          <li id="c2" class="choice"></li>
+          <li id="c3" class="choice"></li>
+          <li id="c4" class="choice"></li>
+        </ol>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
