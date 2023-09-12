@@ -13,6 +13,10 @@ function setTime() {
       clearInterval(timerInterval);
       getGoodMessage();
     }
+    // stops timer when out of questions from set
+    if (questionList.length == 0) {
+      clearInterval(timerInterval);
+    }
   }, 1000);
 
   function getGoodMessage() {
@@ -132,8 +136,16 @@ function QuestionDisplay() {
   choice1.forEach((choice1) => {
     console.log(choice1);
     let choiceNum = choice1.dataset["number"];
-    choice1.innerHTML = questionList["choice" + choiceNum];
+    if (choiceNum > 0) {
+      choice1.innerHTML = questionList["choice" + choiceNum];
+    }
   });
+}
+
+function endGame() {
+  if (questionList == null) {
+    startQs.setAttribute("style", "display:none");
+  } else QuestionDisplay();
 }
 
 // choosing an answer and checking it
@@ -153,7 +165,12 @@ userChoice.addEventListener("click", function checkAnswer(event) {
   setTimeout(function () {
     youClicked.classList.remove("wrong", "correct");
     questionList.splice(0, 1);
-    QuestionDisplay();
+    // checks to see if all questions have been gone through
+    if (questionList.length == 0) {
+      startQs.setAttribute("style", "display:none");
+    } else QuestionDisplay();
+    // endGame();
+
     console.log(questionList);
   }, 1000);
 });
