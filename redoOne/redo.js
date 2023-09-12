@@ -36,103 +36,136 @@ function hideInstructions() {
     // prevents Bubbling!
     event.stopPropagation();
     // display first question
-    initialQuestionDisplay();
+    QuestionDisplay();
   });
 }
 hideInstructions();
 
-const Q1 = {
-  title: "What is the best way to make a JS quiz",
-  opt1: "hello",
-  opt2: "purple",
-  opt3: "Google",
-  opt4: "red",
-  answer: 3,
-};
+// const Q1 = {
+//   title: "What is the best way to make a JS quiz",
+//   opt1: "hello",
+//   opt2: "purple",
+//   opt3: "Google",
+//   opt4: "red",
+//   answer: 3,
+// };
 
-const Q2 = {
-  title: "2",
-  opt1: "hello",
-  opt2: "purple",
-  opt3: "green",
-  opt4: "red",
-  answer: 3,
+// const Q2 = {
+//   title: "Why won't I show up2?",
+//   opt1: "hello",
+//   opt2: "purple",
+//   opt3: "green",
+//   opt4: "red",
+//   answer: 2,
 
-  // correct: Q2.opt3,
-};
+//   // correct: Q2.opt3,
+// };
 
-const Q3 = {
-  title: "3",
-  opt1: "hello",
-  opt2: "purple",
-  opt3: "green",
-  opt4: "red",
-  answer: 3,
+// const Q3 = {
+//   title: "Why won't I show up?3",
+//   opt1: "hello",
+//   opt2: "purple",
+//   opt3: "green",
+//   opt4: "red",
+//   answer: 1,
 
-  // correct: Q2.opt3,
-};
+//   // correct: Q2.opt3,
+// };
 
-const Q4 = {
-  title: "4",
-  opt1: "hello",
-  opt2: "purple",
-  opt3: "green",
-  opt4: "red",
-  answer: 3,
-};
+// const Q4 = {
+//   title: "Why won't I show up?4",
+//   opt1: "hello",
+//   opt2: "purple",
+//   opt3: "green",
+//   opt4: "red",
+//   answer: 2,
+// };
 
-const questions = [Q1, Q2, Q3, Q4];
+const questionList = [
+  {
+    title: "What is the best way to make a JS quiz",
+    opt1: "hello",
+    opt2: "purple",
+    opt3: "Google",
+    opt4: "red",
+    answer: 3,
+  },
+  {
+    title: "Why won't I show up2?",
+    opt1: "hello",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 2,
+
+    // correct: Q2.opt3,
+  },
+  {
+    title: "Why won't I show up?3",
+    opt1: "hello",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 1,
+    // correct: Q2.opt3,
+  },
+  {
+    title: "Why won't I show up?4",
+    opt1: "hello",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 2,
+  },
+];
+// const questions = [Q1, Q2, Q3, Q4];
 // generate index
 
-let generatedIndex = 0;
-let questionSelect = questions[generatedIndex];
-console.log(questionSelect);
+// let generatedIndex = questions.length - 1;
+// let questionSelect = questions[generatedIndex];
+// console.log(questionSelect);
 
-function initialQuestionDisplay() {
+function QuestionDisplay() {
   const qTitle = document.querySelector("#questionTitle");
-  qTitle.textContent = "Question: " + questionSelect.title;
-  const choice1 = document.querySelector("#c1");
-  choice1.textContent = questionSelect.opt1;
-  const choice2 = document.querySelector("#c2");
-  choice2.textContent = questionSelect.opt2;
-  const choice3 = document.querySelector("#c3");
-  choice3.textContent = questionSelect.opt3;
-  const choice4 = document.querySelector("#c4");
-  choice4.textContent = questionSelect.opt4;
-}
-// naming function outside of eventlistener
-
-// the below question does not work
-function cycleQuestions(generatedIndex) {
-  if (generatedIndex < 6) {
-    generatedIndex++;
-    console.log("index", generatedIndex);
-    initialQuestionDisplay();
-  } else return;
+  qTitle.textContent = "Question: " + questionList[0].title;
+  const choice1 = Array.from(document.querySelectorAll(".choice"));
+  choice1.forEach((choice1) => {
+    console.log(choice1);
+    let choiceNum = choice1.dataset["number"];
+    choice1.innerHTML = questionList["choice" + choiceNum];
+  });
 }
 
+// choosing an answer and checking it
 const userChoice = document.querySelector("#answerChoices");
 userChoice.addEventListener("click", function checkAnswer(event) {
   youClicked = event.target;
   value = event.target.getAttribute("data-number");
-  console.log(value);
-  if (value == questionSelect.answer) {
+  if (value == questionList[0].answer) {
     youClicked.classList.add("correct");
-    let message = document.createElement("p");
-    document.getElementById("questionContainer");
+    // correct message below
+    // let message = document.createElement("p");
+    // document.getElementById("questionContainer");
   } else {
     youClicked.classList.add("wrong");
+    // need to enter wrong message here
   }
   setTimeout(function () {
     youClicked.classList.remove("wrong", "correct");
-    cycleQuestions();
+    questionList.splice(0, 1);
+    QuestionDisplay();
+    console.log(questionList);
   }, 1000);
 });
-// even though all of li have .choice, only the first element will trigger the event
+
+// splice function
+// function nextQuestion() {
+//   initialQuestionDisplay(generatedIndex);
+// }
+
 // Question Generation
 
 // // put in an if statement to check answers for each?
-// const correctAnswers = [Q1.correct, Q2.opt3, Q3.opt1, Q4.opt4];
 // // questions into an array with properties
 // const questionList = [
 //   {
