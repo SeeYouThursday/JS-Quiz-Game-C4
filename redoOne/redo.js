@@ -36,16 +36,18 @@ function hideInstructions() {
     // prevents Bubbling!
     event.stopPropagation();
     // display first question
+    initialQuestionDisplay();
   });
 }
 hideInstructions();
 
 const Q1 = {
-  title: "1",
+  title: "What is the best way to make a JS quiz",
   opt1: "hello",
   opt2: "purple",
-  opt3: "green",
+  opt3: "Google",
   opt4: "red",
+  answer: 3,
 };
 
 const Q2 = {
@@ -54,6 +56,8 @@ const Q2 = {
   opt2: "purple",
   opt3: "green",
   opt4: "red",
+  answer: 3,
+
   // correct: Q2.opt3,
 };
 
@@ -63,6 +67,8 @@ const Q3 = {
   opt2: "purple",
   opt3: "green",
   opt4: "red",
+  answer: 3,
+
   // correct: Q2.opt3,
 };
 
@@ -72,6 +78,7 @@ const Q4 = {
   opt2: "purple",
   opt3: "green",
   opt4: "red",
+  answer: 3,
 };
 
 const questions = [Q1, Q2, Q3, Q4];
@@ -94,15 +101,33 @@ function initialQuestionDisplay() {
   choice4.textContent = questionSelect.opt4;
 }
 // naming function outside of eventlistener
-function cycleQuestions() {
-  if (generatedIndex < 5) {
+
+// the below question does not work
+function cycleQuestions(generatedIndex) {
+  if (generatedIndex < 6) {
     generatedIndex++;
-    console.log(generatedIndex);
+    console.log("index", generatedIndex);
     initialQuestionDisplay();
   } else return;
 }
+
 const userChoice = document.querySelector("#answerChoices");
-userChoice.addEventListener("click", cycleQuestions);
+userChoice.addEventListener("click", function checkAnswer(event) {
+  youClicked = event.target;
+  value = event.target.getAttribute("data-number");
+  console.log(value);
+  if (value == questionSelect.answer) {
+    youClicked.classList.add("correct");
+    let message = document.createElement("p");
+    document.getElementById("questionContainer");
+  } else {
+    youClicked.classList.add("wrong");
+  }
+  setTimeout(function () {
+    youClicked.classList.remove("wrong", "correct");
+    cycleQuestions();
+  }, 1000);
+});
 // even though all of li have .choice, only the first element will trigger the event
 // Question Generation
 

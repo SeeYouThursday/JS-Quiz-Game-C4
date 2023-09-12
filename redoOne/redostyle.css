@@ -33,3 +33,19 @@ h1 {
 #answerChoices li:hover {
   background-color: aqua;
 }
+
+button {
+  outline: none;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.wrong {
+  color: black;
+  background-color: red;
+}
+
+.correct {
+  color: white;
+  background-color: green;
+}
