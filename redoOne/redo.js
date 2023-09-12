@@ -1,14 +1,19 @@
-// timer
+// get elements
 let timeEl = document.querySelector("#main");
 const timer = document.querySelector("#timer");
 const startQs = document.querySelector("#questionContainer");
+const scoreText = document.querySelector("#score");
+const collectHighscore = document.getElementById("collectHighscore");
+const initials = document.getElementById("initials");
+const startBtn = document.getElementById("start");
+
 let secondsLeft = 120;
-startBtn = document.getElementById("start");
+
 // setInterval just tells how to count down on  the timer
 function setTime() {
   let timerInterval = setInterval(function () {
     secondsLeft--;
-    timer.textContent = "Time: " + secondsLeft + " seconds left";
+    timer.textContent = "Time: " + secondsLeft + " second(s) left";
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
       getGoodMessage();
@@ -16,6 +21,7 @@ function setTime() {
     // stops timer when out of questions from set
     if (questionList.length == 0) {
       clearInterval(timerInterval);
+      endGame();
     }
   }, 1000);
 
@@ -23,8 +29,28 @@ function setTime() {
     timer.textContent = "Get Rekt, Loser!";
   }
 }
-// Start Button Functionality - EventListener
 
+function endGame() {
+  scoreText.textContent = "Your Score: " + secondsLeft;
+  scoreText.classList.remove("hide");
+  collectHighscore.classList.remove("hide");
+  initialCollect();
+}
+
+function initialCollect() {
+  initials.addEventListener("click", function (event) {
+    event.preventDefault(event);
+    let score = secondsLeft;
+    console.log(score);
+    let yourInitials = initials.value;
+    localStorage.setItem("score", score);
+    localStorage.setItem("initials", yourInitials);
+    // get the score/initial
+    // let userScore = localStorage.getItem("score");
+    // let userInitials = localStorage.getItem("initials");
+  });
+}
+// Start Button Functionality - EventListener
 function hideInstructions() {
   // hide instructions & button on click
   startBtn.addEventListener("click", function (event) {
@@ -140,12 +166,6 @@ function QuestionDisplay() {
       choice1.innerHTML = questionList["choice" + choiceNum];
     }
   });
-}
-
-function endGame() {
-  if (questionList == null) {
-    startQs.setAttribute("style", "display:none");
-  } else QuestionDisplay();
 }
 
 // choosing an answer and checking it

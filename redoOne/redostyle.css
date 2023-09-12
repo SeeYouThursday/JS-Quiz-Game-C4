@@ -40,6 +40,10 @@ button {
   border: 1px solid white;
 }
 
+.hide {
+  display: none;
+}
+
 .wrong {
   color: black;
   background-color: red;
