@@ -8,7 +8,43 @@ const initials = document.getElementById("initials");
 const startBtn = document.getElementById("start");
 
 let secondsLeft = 120;
+const questionList = [
+  {
+    title: "Why won't I show up2?",
+    opt1: "d",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 2,
+  },
+  {
+    title: "Why won't I show up2?",
+    opt1: "c",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 2,
 
+    // correct: Q2.opt3,
+  },
+  {
+    title: "Why won't I show up?3",
+    opt1: "b",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 1,
+    // correct: Q2.opt3,
+  },
+  {
+    title: "Why won't I show up?4",
+    opt1: "a",
+    opt2: "purple",
+    opt3: "green",
+    opt4: "red",
+    answer: 2,
+  },
+];
 // setInterval just tells how to count down on  the timer
 function setTime() {
   let timerInterval = setInterval(function () {
@@ -24,7 +60,7 @@ function setTime() {
       endGame();
     }
   }, 1000);
-
+  // message defined below
   function getGoodMessage() {
     timer.textContent = "Get Rekt, Loser!";
   }
@@ -71,104 +107,6 @@ function hideInstructions() {
 }
 hideInstructions();
 
-// const Q1 = {
-//   title: "What is the best way to make a JS quiz",
-//   opt1: "hello",
-//   opt2: "purple",
-//   opt3: "Google",
-//   opt4: "red",
-//   answer: 3,
-// };
-
-// const Q2 = {
-//   title: "Why won't I show up2?",
-//   opt1: "hello",
-//   opt2: "purple",
-//   opt3: "green",
-//   opt4: "red",
-//   answer: 2,
-
-//   // correct: Q2.opt3,
-// };
-
-// const Q3 = {
-//   title: "Why won't I show up?3",
-//   opt1: "hello",
-//   opt2: "purple",
-//   opt3: "green",
-//   opt4: "red",
-//   answer: 1,
-
-//   // correct: Q2.opt3,
-// };
-
-// const Q4 = {
-//   title: "Why won't I show up?4",
-//   opt1: "hello",
-//   opt2: "purple",
-//   opt3: "green",
-//   opt4: "red",
-//   answer: 2,
-// };
-
-const questionList = [
-  {
-    title: "Why won't I show up2?",
-    opt1: "d",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 2,
-  },
-  {
-    title: "Why won't I show up2?",
-    opt1: "c",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 2,
-
-    // correct: Q2.opt3,
-  },
-  {
-    title: "Why won't I show up?3",
-    opt1: "b",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 1,
-    // correct: Q2.opt3,
-  },
-  {
-    title: "Why won't I show up?4",
-    opt1: "a",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 2,
-  },
-];
-// const questions = [Q1, Q2, Q3, Q4];
-// generate index
-
-// let generatedIndex = questions.length - 1;
-// let questionSelect = questions[generatedIndex];
-// console.log(questionSelect);
-
-// currently not working
-// let optionList = function () {
-//   for (var i = 0; i < options.length; i++) {
-//     let showOption = questionList[0].options[i];
-//     const choices = Array.from(
-//       document.getElementsByClassName("questionContainer")
-//     );
-//     console.log(choices);
-//     choices.forEach((choices) => {
-//       choices.textContent = showOption;
-//       console.log("optselect", optSelect);
-//     });
-//   }
-// };
 // display each option set - the click event will cause the first array to be removed, causing the next ? to appear
 function QuestionDisplay() {
   const qTitle = document.querySelector("#questionTitle");
@@ -183,11 +121,14 @@ function QuestionDisplay() {
   choice4.textContent = questionList[0].opt4;
 }
 
-// }
 // choosing an answer and checking it
+
 const userChoice = document.querySelector("#answerChoices");
 userChoice.addEventListener("click", function checkAnswer(event) {
   event.stopPropagation();
+  // function wrongChoicePenalty() {
+  //   let scorePenalty = ();
+  // }
   youClicked = event.target;
   value = event.target.getAttribute("data-number");
   if (value == questionList[0].answer) {
@@ -197,7 +138,7 @@ userChoice.addEventListener("click", function checkAnswer(event) {
     // document.getElementById("questionContainer");
   } else {
     youClicked.classList.add("wrong");
-    secondsLeft - 5;
+    secondsLeft -= 5;
     console.log(secondsLeft);
     // need to enter wrong message here
   }
@@ -208,72 +149,5 @@ userChoice.addEventListener("click", function checkAnswer(event) {
     if (questionList.length == 0) {
       startQs.setAttribute("style", "display:none");
     } else QuestionDisplay();
-    // endGame();
-
-    console.log(questionList);
   }, 1000);
 });
-
-// splice function
-// function nextQuestion() {
-//   initialQuestionDisplay(generatedIndex);
-// }
-
-// Question Generation
-
-// // put in an if statement to check answers for each?
-// // questions into an array with properties
-// const questionList = [
-//   {
-//     title: "1",
-//     opt1: "hello",
-//     opt2: "purple",
-//     opt3: "green",
-//     opt4: "red",
-//   },
-//   Q2,
-//   Q3,
-//   Q4,
-// ];
-
-// function enterAnswerChoice() {
-//   // question title insert
-//   for (let prop in Q1) {
-//     const qTitle = document.querySelector("#questionTitle");
-//     qTitle.innerHTML = "Question: " + title;
-//     const choice1 = document.querySelector("#c1");
-//     choice1.innerHTML = questionList[opt1];
-//     const choice2 = document.querySelector("#c2");
-//     choice2.innerHTML = Q1[opt2];
-//     const choice3 = document.querySelector("#c3");
-//     choice3.innerHTML = questionList[i].opt3;
-//     const choice4 = document.querySelector("#c4");
-//     choice4.innerHTML = questionList[i].opt4;
-//   }
-// }
-
-// enterAnswerChoice();
-
-// Checking correctAnswers
-// function checkingAnswers() {
-//   const userChoices = document.getElementsByClassName(".answerChoices");
-//   userChoices.addEventListener("click", function (event) {
-//     let youClicked = event.target;
-//     for (var i; i < 4; i++) {
-//       if (youClicked === questionList.Q[i].correct) {
-//         const correctMessage = document.crea2teElement("p");
-//         correctMessage.textContent = "Correct! You're not dumb!";
-//         startQs.appendChild("correctMessage");
-//       } else secondsLeft - 5;
-//     }
-//   });
-// }
-
-// checkingAnswers();
-
-// event listener for userChoice
-// startQs.children[0].innerHTML =
-// let userChoice = "";
-// function checkAnswers() {}
-// if (userChoice === questionList[i].correct) {
-// }
