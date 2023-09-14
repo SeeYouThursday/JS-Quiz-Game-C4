@@ -6,8 +6,9 @@ const scoreText = document.querySelector("#score");
 const collectHighscore = document.getElementById("collectHighscore");
 const initials = document.getElementById("initials");
 const startBtn = document.getElementById("start");
+const userChoice = document.querySelector("#answerChoices");
 
-let secondsLeft = 120;
+let secondsLeft = 60;
 const questionList = [
   {
     title: "Why won't I show up2?",
@@ -96,7 +97,6 @@ function hideInstructions() {
       begin.setAttribute("style", "display: none;");
       const instructions = document.querySelector("#instruction-contents");
       instructions.setAttribute("style", "display: none");
-      const startQs = document.querySelector("#questionContainer");
       startQs.setAttribute("style", "display: flex");
     } else return;
     // prevents Bubbling!
@@ -122,25 +122,28 @@ function QuestionDisplay() {
 }
 
 // choosing an answer and checking it
-
-const userChoice = document.querySelector("#answerChoices");
 userChoice.addEventListener("click", function checkAnswer(event) {
   event.stopPropagation();
-  // function wrongChoicePenalty() {
-  //   let scorePenalty = ();
-  // }
   youClicked = event.target;
   value = event.target.getAttribute("data-number");
   if (value == questionList[0].answer) {
     youClicked.classList.add("correct");
     // correct message below
-    // let message = document.createElement("p");
-    // document.getElementById("questionContainer");
+    const right = document.getElementById("right");
+    right.textContent = "Wow, you do know how to read!";
+    right.classList.remove("hide");
+    setTimeout(function () {
+      right.classList.add("hide");
+    }, 1000);
   } else {
     youClicked.classList.add("wrong");
     secondsLeft -= 5;
-    console.log(secondsLeft);
-    // need to enter wrong message here
+    const wrong = document.getElementById("wrong");
+    wrong.textContent = "Get Good, Scrub!";
+    wrong.classList.remove("hide");
+    setTimeout(function () {
+      wrong.classList.add("hide");
+    }, 1000);
   }
   setTimeout(function () {
     youClicked.classList.remove("wrong", "correct");
