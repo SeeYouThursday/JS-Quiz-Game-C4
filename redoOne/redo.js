@@ -41,7 +41,7 @@ function initialCollect() {
   initials.addEventListener("click", function (event) {
     event.preventDefault(event);
     let score = secondsLeft;
-    console.log(score);
+    // console.log(score);
     let yourInitials = initials.value;
     localStorage.setItem("score", score);
     localStorage.setItem("initials", yourInitials);
@@ -113,16 +113,16 @@ hideInstructions();
 
 const questionList = [
   {
-    title: "What is the best way to make a JS quiz",
-    opt1: "hello",
+    title: "Why won't I show up2?",
+    opt1: "d",
     opt2: "purple",
-    opt3: "Google",
+    opt3: "green",
     opt4: "red",
-    answer: 3,
+    answer: 2,
   },
   {
     title: "Why won't I show up2?",
-    opt1: "hello",
+    opt1: "c",
     opt2: "purple",
     opt3: "green",
     opt4: "red",
@@ -132,7 +132,7 @@ const questionList = [
   },
   {
     title: "Why won't I show up?3",
-    opt1: "hello",
+    opt1: "b",
     opt2: "purple",
     opt3: "green",
     opt4: "red",
@@ -141,7 +141,7 @@ const questionList = [
   },
   {
     title: "Why won't I show up?4",
-    opt1: "hello",
+    opt1: "a",
     opt2: "purple",
     opt3: "green",
     opt4: "red",
@@ -155,22 +155,39 @@ const questionList = [
 // let questionSelect = questions[generatedIndex];
 // console.log(questionSelect);
 
+// currently not working
+// let optionList = function () {
+//   for (var i = 0; i < options.length; i++) {
+//     let showOption = questionList[0].options[i];
+//     const choices = Array.from(
+//       document.getElementsByClassName("questionContainer")
+//     );
+//     console.log(choices);
+//     choices.forEach((choices) => {
+//       choices.textContent = showOption;
+//       console.log("optselect", optSelect);
+//     });
+//   }
+// };
+// display each option set - the click event will cause the first array to be removed, causing the next ? to appear
 function QuestionDisplay() {
   const qTitle = document.querySelector("#questionTitle");
   qTitle.textContent = "Question: " + questionList[0].title;
-  const choice1 = Array.from(document.querySelectorAll(".choice"));
-  choice1.forEach((choice1) => {
-    console.log(choice1);
-    let choiceNum = choice1.dataset["number"];
-    if (choiceNum > 0) {
-      choice1.innerHTML = questionList["choice" + choiceNum];
-    }
-  });
+  const choice1 = document.querySelector("#c1");
+  choice1.textContent = questionList[0].opt1;
+  const choice2 = document.querySelector("#c2");
+  choice2.textContent = questionList[0].opt2;
+  const choice3 = document.querySelector("#c3");
+  choice3.textContent = questionList[0].opt3;
+  const choice4 = document.querySelector("#c4");
+  choice4.textContent = questionList[0].opt4;
 }
 
+// }
 // choosing an answer and checking it
 const userChoice = document.querySelector("#answerChoices");
 userChoice.addEventListener("click", function checkAnswer(event) {
+  event.stopPropagation();
   youClicked = event.target;
   value = event.target.getAttribute("data-number");
   if (value == questionList[0].answer) {
@@ -180,6 +197,8 @@ userChoice.addEventListener("click", function checkAnswer(event) {
     // document.getElementById("questionContainer");
   } else {
     youClicked.classList.add("wrong");
+    secondsLeft - 5;
+    console.log(secondsLeft);
     // need to enter wrong message here
   }
   setTimeout(function () {
