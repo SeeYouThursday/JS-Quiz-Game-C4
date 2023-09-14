@@ -7,6 +7,7 @@ const collectHighscore = document.getElementById("collectHighscore");
 const initials = document.getElementById("initials");
 const startBtn = document.getElementById("start");
 const userChoice = document.querySelector("#answerChoices");
+const reset = document.getElementById("reset");
 
 let secondsLeft = 60;
 const questionList = [
@@ -71,22 +72,59 @@ function endGame() {
   scoreText.textContent = "Your Score: " + secondsLeft;
   scoreText.classList.remove("hide");
   collectHighscore.classList.remove("hide");
-  initialCollect();
+  document.getElementById("submit").addEventListener("click", function (event) {
+    event.preventDefault();
+    let yourScore = secondsLeft;
+    let initialsSet = initials.value;
+    console.log(initialsSet);
+    localStorage.setItem("yourScore", yourScore);
+    localStorage.setItem("yourInitials", initialsSet);
+    // collection Works
+    displayHighScores();
+  });
+
+  //
+}
+function displayHighScores() {
+  let userScore = localStorage.getItem("yourScore");
+  let userInitials = localStorage.getItem("yourInitials");
+  // get the score/initial
+  writingInitials = document.createElement("li");
+  writingInitials.textContent =
+    "Player: " + userInitials + "   Score: " + userScore;
+  document.getElementById("leaderboard").append(writingInitials);
 }
 
-function initialCollect() {
-  initials.addEventListener("click", function (event) {
-    event.preventDefault(event);
-    let score = secondsLeft;
-    // console.log(score);
-    let yourInitials = initials.value;
-    localStorage.setItem("score", score);
-    localStorage.setItem("initials", yourInitials);
-    // get the score/initial
-    // let userScore = localStorage.getItem("score");
-    // let userInitials = localStorage.getItem("initials");
-  });
-}
+displayHighScores();
+
+// const getHighScores = localStorage.getItem(score);
+// const getInitials = localStorage.getItem(initials);
+// console.log(getHighScores);
+// var pEl = document.createElement("p");
+// pEl.textContent = "Player: " + initialsSet + "score:" + getHighScores;
+// pEl.append("#highScores");
+
+// function initialCollect() {
+//   initials.addEventListener("submit", function (event) {
+//     event.preventDefault();
+//     let score = secondsLeft;
+//     let yourInitials = initials;
+//     localStorage.setItem("yourScore", score);
+//     localStorage.setItem("yourInitials", yourInitials);
+//     // get the score/initial
+//     // let userScore = localStorage.getItem("score");
+//     // let userInitials = localStorage.getItem("initials");
+//   });
+// }
+
+// function displayHighScores() {
+//   const getHighScores = localStorage.getItem(score);
+//   const getInitials = localStorage.getItem(yourInitials);
+//   console.log(getHighScores);
+//   var pEl = document.createElement("p");
+//   pEl.textContent = "Player: " + storeInitials + "score:" + getHighScores;
+//   pEl.append("#highScores");
+// }
 // Start Button Functionality - EventListener
 function hideInstructions() {
   // hide instructions & button on click
@@ -151,6 +189,16 @@ userChoice.addEventListener("click", function checkAnswer(event) {
     // checks to see if all questions have been gone through
     if (questionList.length == 0) {
       startQs.setAttribute("style", "display:none");
+      reset.classList.remove("hide");
     } else QuestionDisplay();
   }, 1000);
 });
+
+// currently does not refresh
+const resetListen = reset.addEventListener("click", function (event) {
+  event.stopPropagation();
+  window.location.reload;
+  // event.stopPropagation();
+  // event.preventDefault();
+});
+// const collectInitials = initials.addEventListener("submit", initialCollect());

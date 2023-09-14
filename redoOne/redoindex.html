@@ -11,7 +11,6 @@
     <header>
       <h1>Get Rekt Kid! *JS Edition!</h1>
       <h2 id="timer" data-timer="0">Time:</h2>
-      <h2>Your Score:</h2>
       <h2 id="score" class="hide"></h2>
       <h2><a>View High Scores</a></h2>
     </header>
@@ -50,12 +49,26 @@
         </section>
       </section>
       <div class="endGame">
-        <form id="collectHighscore" class="hide">
+        <section id="collectHighscore">
           <label for="initials">Enter Your Initials</label>
-          <input type="text" name="initials" id="initials" />
-        </form>
+          <input
+            type="text"
+            name="initials"
+            id="initials"
+            placeholder="initials"
+          />
+        </section>
+        <!-- </form> -->
+        <button type="submit" id="submit">
+          Submit High Score and Initials!
+        </button>
+        <section id="highScores">
+          <ul id="leaderboard"></ul>
+        </section>
       </div>
     </main>
-    <footer></footer>
+    <footer>
+      <button type="reset" id="reset" class="hide">Reset!</button>
+    </footer>
   </body>
 </html>
