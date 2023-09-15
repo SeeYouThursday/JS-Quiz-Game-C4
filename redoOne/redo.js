@@ -4,12 +4,15 @@ const timer = document.querySelector("#timer");
 const startQs = document.querySelector("#questionContainer");
 const scoreText = document.querySelector("#score");
 const collectHighscore = document.getElementById("collectHighscore");
+const leaderboards = [];
 const initials = document.getElementById("initials");
 const startBtn = document.getElementById("start");
 const userChoice = document.querySelector("#answerChoices");
 const reset = document.getElementById("reset");
+const submit = document.getElementById("submit");
 
 let secondsLeft = 60;
+let storedHighScores = {};
 const questionList = [
   {
     title: "Why won't I show up2?",
@@ -82,8 +85,6 @@ function endGame() {
     // collection Works
     displayHighScores();
   });
-
-  //
 }
 function displayHighScores() {
   let userScore = localStorage.getItem("yourScore");
@@ -93,6 +94,12 @@ function displayHighScores() {
   writingInitials.textContent =
     "Player: " + userInitials + "   Score: " + userScore;
   document.getElementById("leaderboard").append(writingInitials);
+  storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
+  leaderboards.push(storedHighScores);
+  console.log(storedHighScores);
+
+  // leaderboards.concat(storedHighScores);
+  console.log(leaderboards);
 }
 
 displayHighScores();
@@ -194,11 +201,14 @@ userChoice.addEventListener("click", function checkAnswer(event) {
   }, 1000);
 });
 
-// currently does not refresh
-const resetListen = reset.addEventListener("click", function (event) {
+// Refresh function on Reset Btn
+reset.addEventListener("click", function (event) {
   event.stopPropagation();
-  window.location.reload;
-  // event.stopPropagation();
-  // event.preventDefault();
+  window.location.reload();
 });
 // const collectInitials = initials.addEventListener("submit", initialCollect());
+submit.click(function () {
+  setTimeout(function () {
+    submit.setAttribute("disabled");
+  }, 5000);
+});
