@@ -99,6 +99,7 @@ function endGame() {
       localStorage.setItem("yourInitials", initialsSet);
       displayHighScores();
     }
+    
   });
 }
 
