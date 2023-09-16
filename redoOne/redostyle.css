@@ -50,10 +50,10 @@ h1 {
 
 .choice {
   width: 80%;
-  margin: 0%;
+  margin: 5px;
   border-radius: 5px;
   box-sizing: content-box;
-  border: 10px solid gray;
+  border: 5px solid white;
 }
 
 button {

@@ -9,6 +9,12 @@ const startBtn = document.getElementById("start");
 const userChoice = document.querySelector("#answerChoices");
 const reset = document.getElementById("reset");
 const submit = document.getElementById("submit");
+// choices
+const choice1 = document.querySelector("#c1");
+const choice2 = document.querySelector("#c2");
+const choice3 = document.querySelector("#c3");
+const choice4 = document.querySelector("#c4");
+
 // various game data
 let secondsLeft = 60;
 let yourScore = 0;
@@ -139,13 +145,9 @@ function QuestionDisplay() {
   scoreText.textContent = yourScore;
   const qTitle = document.querySelector("#questionTitle");
   qTitle.textContent = "Question: " + questionList[0].title;
-  const choice1 = document.querySelector("#c1");
   choice1.textContent = questionList[0].opt1;
-  const choice2 = document.querySelector("#c2");
   choice2.textContent = questionList[0].opt2;
-  const choice3 = document.querySelector("#c3");
   choice3.textContent = questionList[0].opt3;
-  const choice4 = document.querySelector("#c4");
   choice4.textContent = questionList[0].opt4;
 }
 
@@ -186,15 +188,20 @@ const wrongAnswer = (event) => {
   }, 500);
 };
 
-userChoice.addEventListener("click", function (event) {
+// userchoice event listeners
+const selectingButtons = [choice1, choice2, choice3, choice4];
+
+selectingButtons.forEach(() => {
+  selectingButtons.choiceEventListener;
+});
+
+const choiceEventListener = addEventListener("click", function (event) {
   checkAnswers(event);
   nextQuestion(event);
 });
 const nextQuestion = (event) =>
   setTimeout(function () {
     event.stopPropagation();
-    // choices.setAttribute("disabled", true);
-    youClicked.classList.remove("wrong", "correct");
     questionList.splice(0, 1);
     // checks to see if all questions have been gone through
     if (questionList.length == 0) {
