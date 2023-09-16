@@ -147,41 +147,40 @@ function QuestionDisplay() {
 }
 
 // choosing an answer and checking it
-for (var i = 0; i < 4; i++) {
-  userChoice.children[i].addEventListener("click", function checkAnswer(event) {
+
+userChoice.addEventListener("click", function checkAnswer(event) {
+  event.stopPropagation();
+  youClicked = event.target;
+  value = event.target.getAttribute("data-number");
+  if (value == questionList[0].answer) {
+    yourScore += 10;
     event.stopPropagation();
-    youClicked = event.target;
-    value = event.target.getAttribute("data-number");
-    if (value == questionList[0].answer) {
-      yourScore += 10;
-      event.stopPropagation();
-      youClicked.classList.add("correct");
-      // correct message below
+    youClicked.classList.add("correct");
+    // correct message below
 
-      const right = document.getElementById("right");
-      right.textContent = "Wow, you do know how to read!";
-      right.classList.remove("hide");
-      setTimeout(function () {
-        right.classList.add("hide");
-      }, 500);
-    } else {
-      event.stopPropagation();
-      youClicked.classList.add("wrong");
+    const right = document.getElementById("right");
+    right.textContent = "Wow, you do know how to read!";
+    right.classList.remove("hide");
+    setTimeout(function () {
+      right.classList.add("hide");
+    }, 500);
+  } else {
+    event.stopPropagation();
+    youClicked.classList.add("wrong");
 
-      const wrong = document.getElementById("wrong");
-      wrong.textContent = "Get Good, Scrub!";
-      wrong.classList.remove("hide");
-      setTimeout(function () {
-        wrong.classList.add("hide");
-      }, 500);
-      if (secondsLeft > 10) {
-        secondsLeft -= 10;
-      } else endGame();
-    }
+    const wrong = document.getElementById("wrong");
+    wrong.textContent = "Get Good, Scrub!";
+    wrong.classList.remove("hide");
+    setTimeout(function () {
+      wrong.classList.add("hide");
+    }, 500);
+    if (secondsLeft > 10) {
+      secondsLeft -= 10;
+    } else endGame();
+  }
 
-    nextQuestion(event);
-  });
-}
+  nextQuestion(event);
+});
 const nextQuestion = (event) =>
   setTimeout(function () {
     event.stopPropagation();
