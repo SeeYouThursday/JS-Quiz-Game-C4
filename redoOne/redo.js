@@ -11,8 +11,6 @@ const reset = document.getElementById("reset");
 const submit = document.getElementById("submit");
 // various game data
 let secondsLeft = 60;
-const leaderboards = [];
-let storedHighScores = {};
 let yourScore = 0;
 const questionList = [
   {
@@ -77,39 +75,49 @@ function offSetTimeDelay() {
   secondsLeft += 1;
 }
 
+const checkInput = () => {
+  if (initials.value !== "") {
+    writeScores();
+  } else return;
+};
+
 function endGame() {
   offSetTimeDelay();
-  scoreText.textContent = yourScore + secondsLeft;
+  let finalScore = secondsLeft + yourScore;
+  scoreText.textContent = finalScore;
+  timer.textContent = "Time: " + secondsLeft + " seconds";
   // scoreText.classList.remove("hide");
   collectHighscore.classList.remove("hide");
+  checkInput();
   document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
-    let yourScore = secondsLeft;
-    let initialsSet = initials.value;
-    console.log(initialsSet);
-    localStorage.setItem("yourScore", yourScore);
-    localStorage.setItem("yourInitials", initialsSet);
-    displayHighScores();
-    leaderboards.push("Player: " + initialsSet + " Highscore: " + yourScore);
+    if (initials.value !== "") {
+      // let storeScore = finalScore;
+      let initialsSet = initials.value;
+      console.log(initialsSet);
+      localStorage.setItem("yourScore", finalScore);
+      localStorage.setItem("yourInitials", initialsSet);
+      displayHighScores();
+    }
   });
-  timer.textContent = "Time: " + secondsLeft + " seconds";
 }
 
 function displayHighScores() {
   let userScore = localStorage.getItem("yourScore");
-  let userInitials = localStorage.getItem("yourInitials");
-  writingInitials = document.createElement("li");
+  let yourInitials = localStorage.getItem("yourInitials");
+  let writingInitials = document.createElement("p");
   writingInitials.textContent =
-    "Player: " + userInitials + "   Score: " + userScore;
+    "Player: " + yourInitials + "   Score: " + userScore;
   document.getElementById("leaderboard").append(writingInitials);
-  storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
+  console.log(writingInitials.textContent);
+  // storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
   // for (var i = 0; i < leaderboards.length; i++) {
   //   let liEl = document.createElement("li");
   //   liEl.textContent(leaderboards[i]);
   //   liEl.append("#leaderboard");
   // }
 }
-displayHighScores();
+// displayHighScores();
 
 // Start Button Functionality - EventListener
 function hideInstructions() {
@@ -208,7 +216,10 @@ reset.addEventListener("click", function (event) {
 submit.addEventListener("click", function () {
   if (initials.value === "") {
     alert("Hey, dummy! Enter your initials!");
-  } else submit.setAttribute("disabled", "true");
+  } else {
+    displayHighScores();
+    submit.setAttribute("disabled", "true");
+  }
 });
 
 // toggle HighScores Button
