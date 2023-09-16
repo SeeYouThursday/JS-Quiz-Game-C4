@@ -150,37 +150,44 @@ function QuestionDisplay() {
 }
 
 // choosing an answer and checking it
-
-userChoice.addEventListener("click", function checkAnswer(event) {
+const checkAnswers = (event) => {
   event.stopPropagation();
   youClicked = event.target;
   value = event.target.getAttribute("data-number");
   if (value == questionList[0].answer) {
-    yourScore += 10;
-    event.stopPropagation();
-    youClicked.classList.add("correct");
-    // correct message below
-    const right = document.getElementById("right");
-    right.textContent = "Wow, you do know how to read!";
-    right.classList.remove("hide");
-    setTimeout(function () {
-      right.classList.add("hide");
-    }, 500);
+    right(youClicked);
   } else {
-    event.stopPropagation();
-    youClicked.classList.add("wrong");
+    wrongAnswer(youClicked);
+  }
+};
 
-    const wrong = document.getElementById("wrong");
-    wrong.textContent = "Get Good, Scrub!";
-    wrong.classList.remove("hide");
-    setTimeout(function () {
-      wrong.classList.add("hide");
-    }, 500);
+const right = (event) => {
+  yourScore += 10;
+  youClicked.classList.add("correct");
+  // correct message below
+  const rightio = document.getElementById("right");
+  rightio.textContent = "Wow, you do know how to read!";
+  // rightio.classList.remove("hide");
+  setTimeout(function () {
+    youClicked.classList.remove("correct");
+    rightio.textContent = "";
+  }, 500);
+};
+const wrongAnswer = (event) => {
+  youClicked.classList.add("wrong");
+  const wrong = document.getElementById("wrong");
+  wrong.textContent = "Get Good, Scrub!";
+  setTimeout(function () {
+    wrong.textContent = "";
+    youClicked.classList.remove("wrong");
     if (secondsLeft > 10) {
       secondsLeft -= 10;
     } else endGame();
-  }
+  }, 500);
+};
 
+userChoice.addEventListener("click", function (event) {
+  checkAnswers(event);
   nextQuestion(event);
 });
 const nextQuestion = (event) =>
