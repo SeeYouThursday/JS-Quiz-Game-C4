@@ -186,17 +186,16 @@ const wrongAnswer = (event) => {
   }, 500);
 };
 
-// userchoice event listeners
-const selectingButtons = [choice1, choice2, choice3, choice4];
+// const selectingButtons = [choice1, choice2, choice3, choice4];
 
-selectingButtons.forEach(() => {
-  selectingButtons.choiceEventListener;
-});
+// selectingButtons.forEach(() => {
+//   selectingButtons.choiceEventListener;
+// });
 
-const choiceEventListener = addEventListener("click", function (event) {
-  checkAnswers(event);
-  nextQuestion(event);
-});
+// const choiceEventListener = addEventListener("click", function (event) {
+//   checkAnswers(event);
+//   nextQuestion(event);
+// });
 const nextQuestion = (event) =>
   setTimeout(function () {
     event.stopPropagation();
@@ -211,6 +210,27 @@ const nextQuestion = (event) =>
       // getHS.classList.remove("hide");
     } else QuestionDisplay();
   }, 1000);
+
+// userchoice event listeners
+choice1.addEventListener("click", function (event) {
+  checkAnswers(event);
+  nextQuestion(event);
+});
+
+choice2.addEventListener("click", function (event) {
+  checkAnswers(event);
+  nextQuestion(event);
+});
+
+choice3.addEventListener("click", function (event) {
+  checkAnswers(event);
+  nextQuestion(event);
+});
+
+choice4.addEventListener("click", function (event) {
+  checkAnswers(event);
+  nextQuestion(event);
+});
 
 // Refresh function on Reset Btn
 reset.addEventListener("click", function (event) {
