@@ -10,16 +10,15 @@
   <body>
     <header>
       <h1>Get Rekt Kid! *JS Edition!</h1>
-      <h2 id="timer" data-timer="0">Time:</h2>
-      <h2 id="score" class="hide"></h2>
-      <h2><a>View High Scores</a></h2>
+      <div class="h2-container">
+        <h2 id="timer">Time: 60 seconds</h2>
+        <h2>Score: <span id="show-score"></span></h2>
+      </div>
     </header>
     <main>
-      <div id="main"></div>
-      <div id="time"></div>
       <div class="startDisplay">
         <div id="instruction-contents">
-          <h3>Instructions</h3>
+          <h3>Instructions:</h3>
           <ul>
             <li>
               You will need to answer each multiple choice question regarding
@@ -27,13 +26,14 @@
               game.
             </li>
             <li>
-              Correct answers will earn you 10 points, while incorrect answers
-              will cause you to lose 5 seconds off of the clock.
+              You will receive 10pts for each correct answer. Any time left on
+              the clock will become bonus points. Incorrect answers will cause
+              you to lose 10 seconds off of the clock.
             </li>
             <li>You will have 1 minute.</li>
           </ul>
-          <button class="startDisplay" id="start">Start!</button>
         </div>
+        <button class="startDisplay" id="start">Start!</button>
       </div>
       <section id="questionContainer">
         <h2 id="questionTitle"></h2>
@@ -48,7 +48,7 @@
           <p id="wrong" class="hide"></p>
         </section>
       </section>
-      <div class="endGame">
+      <div id="endGame" class="hide">
         <section id="collectHighscore">
           <label for="initials">Enter Your Initials</label>
           <input
@@ -57,18 +57,17 @@
             id="initials"
             placeholder="initials"
           />
+          <button type="submit" id="submit">
+            Submit High Score and Initials!
+          </button>
         </section>
-        <!-- </form> -->
-        <button type="submit" id="submit">
-          Submit High Score and Initials!
-        </button>
         <section id="highScores">
           <ul id="leaderboard"></ul>
         </section>
       </div>
     </main>
     <footer>
-      <button type="reset" id="reset" class="hide">Reset!</button>
+      <button type="reset" id="reset" class="hide">Play Again!</button>
     </footer>
   </body>
 </html>
