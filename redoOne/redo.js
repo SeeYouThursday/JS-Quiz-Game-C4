@@ -99,18 +99,19 @@ function endGame() {
       localStorage.setItem("yourInitials", initialsSet);
       displayHighScores();
     }
-    
   });
 }
 
 function displayHighScores() {
   let userScore = localStorage.getItem("yourScore");
   let yourInitials = localStorage.getItem("yourInitials");
-  let writingInitials = document.createElement("p");
-  writingInitials.textContent =
-    "Player: " + yourInitials + "   Score: " + userScore;
-  document.getElementById("leaderboard").append(writingInitials);
-  console.log(writingInitials.textContent);
+  if (yourInitials !== null) {
+    let writingInitials = document.createElement("p");
+    writingInitials.textContent =
+      "Player: " + yourInitials + "   Score: " + userScore;
+    document.getElementById("leaderboard").append(writingInitials);
+    console.log(writingInitials.textContent);
+  } else return;
   // storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
   // for (var i = 0; i < leaderboards.length; i++) {
   //   let liEl = document.createElement("li");
