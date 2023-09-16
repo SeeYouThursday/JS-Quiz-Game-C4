@@ -112,14 +112,7 @@ function displayHighScores() {
     document.getElementById("leaderboard").append(writingInitials);
     console.log(writingInitials.textContent);
   } else return;
-  // storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
-  // for (var i = 0; i < leaderboards.length; i++) {
-  //   let liEl = document.createElement("li");
-  //   liEl.textContent(leaderboards[i]);
-  //   liEl.append("#leaderboard");
-  // }
 }
-// displayHighScores();
 
 // Start Button Functionality - EventListener
 function hideInstructions() {
@@ -167,7 +160,6 @@ userChoice.addEventListener("click", function checkAnswer(event) {
     event.stopPropagation();
     youClicked.classList.add("correct");
     // correct message below
-
     const right = document.getElementById("right");
     right.textContent = "Wow, you do know how to read!";
     right.classList.remove("hide");
