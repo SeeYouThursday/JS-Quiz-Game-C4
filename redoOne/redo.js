@@ -100,7 +100,6 @@ function endGame() {
     if (initials.value !== "") {
       // let storeScore = finalScore;
       let initialsSet = initials.value;
-      console.log(initialsSet);
       localStorage.setItem("yourScore", finalScore);
       localStorage.setItem("yourInitials", initialsSet);
       displayHighScores();
@@ -116,7 +115,6 @@ function displayHighScores() {
     writingInitials.textContent =
       "Player: " + yourInitials + "   Score: " + userScore;
     document.getElementById("leaderboard").append(writingInitials);
-    console.log(writingInitials.textContent);
   } else return;
 }
 
