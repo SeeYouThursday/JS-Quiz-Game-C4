@@ -103,11 +103,11 @@ function displayHighScores() {
     "Player: " + userInitials + "   Score: " + userScore;
   document.getElementById("leaderboard").append(writingInitials);
   storedHighScores = "Player: " + userInitials + " Highscore: " + userScore;
-  for (var i = 0; i < leaderboards.length; i++) {
-    let liEl = document.createElement("li");
-    liEl.textContent(leaderboards[i]);
-    liEl.append("#leaderboard");
-  }
+  // for (var i = 0; i < leaderboards.length; i++) {
+  //   let liEl = document.createElement("li");
+  //   liEl.textContent(leaderboards[i]);
+  //   liEl.append("#leaderboard");
+  // }
 }
 displayHighScores();
 
