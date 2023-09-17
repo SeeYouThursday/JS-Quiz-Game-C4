@@ -80,7 +80,9 @@ function setTime() {
 }
 
 function offSetTimeDelay() {
-  secondsLeft += 1;
+  if (secondsLeft !== 0) {
+    secondsLeft += 1;
+  } else return;
 }
 
 const checkInput = () => {
@@ -173,7 +175,7 @@ const right = (event) => {
   setTimeout(function () {
     youClicked.classList.remove("correct");
     rightio.textContent = "";
-  }, 500);
+  }, 800);
 };
 const wrongAnswer = (event) => {
   youClicked.classList.add("wrong");
