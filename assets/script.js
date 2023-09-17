@@ -34,7 +34,7 @@ const questionList = [
     opt2: "var, type, const",
     opt3: "var, let, const",
     opt4: "You cannot set variables in JS",
-    answer: 2,
+    answer: 3,
   },
   {
     title: "Why did the author include four questions in this quiz?",
