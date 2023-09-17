@@ -59,11 +59,18 @@ function setTime() {
   let timerInterval = setInterval(function () {
     secondsLeft--;
     timer.textContent = "Time: " + secondsLeft + " second(s) left";
+
     if (secondsLeft == 0) {
-      clearInterval(timerInterval, 0);
+      clearInterval(timerInterval);
       startQs.setAttribute("style", "display:none");
       endGame();
-      getGoodMessage();
+    }
+    if (secondsLeft == 0 && questionList.length !== 0) {
+      startQs.setAttribute("style", "display:none");
+      reset.classList.remove("hide");
+      const end = document.getElementById("endGame");
+      end.classList.remove("hide");
+      end.classList.add("flex");
     }
     // stops timer when out of questions from set
     if (questionList.length == 0) {
@@ -71,14 +78,14 @@ function setTime() {
       endGame();
     }
   }, 1000);
-  function getGoodMessage() {
-    const youSuck = document.createElement("h3");
-    youSuck.textContent = "Get Rekt, Loser!";
-    const header = document.getElementsByName("header");
-    youSuck.append(header);
-  }
 }
 
+function getGoodMessage() {
+  const youSuck = document.createElement("h3");
+  youSuck.textContent = "Get Rekt, Loser!";
+  const header = document.getElementsByName("header");
+  youSuck.append(header);
+}
 function offSetTimeDelay() {
   if (secondsLeft !== 0) {
     secondsLeft += 1;
@@ -204,6 +211,17 @@ const nextQuestion = (event) =>
       // getHS.classList.remove("hide");
     } else QuestionDisplay();
   }, 1000);
+
+const outOfTime = () => {
+  setTimeout(() => {
+    if (secondsLeft == 0 && questionList.length !== 0) {
+      clearInterval(timerInterval, 0);
+      startQs.setAttribute("style", "display:none");
+      endGame();
+      getGoodMessage();
+    }
+  }, 1000);
+};
 
 // userchoice event listeners
 choice1.addEventListener("click", function (event) {
