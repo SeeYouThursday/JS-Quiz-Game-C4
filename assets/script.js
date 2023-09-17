@@ -190,16 +190,6 @@ const wrongAnswer = (event) => {
   }, 500);
 };
 
-// const selectingButtons = [choice1, choice2, choice3, choice4];
-
-// selectingButtons.forEach(() => {
-//   selectingButtons.choiceEventListener;
-// });
-
-// const choiceEventListener = addEventListener("click", function (event) {
-//   checkAnswers(event);
-//   nextQuestion(event);
-// });
 const nextQuestion = (event) =>
   setTimeout(function () {
     event.stopPropagation();
