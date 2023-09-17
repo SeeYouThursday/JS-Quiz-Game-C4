@@ -20,36 +20,38 @@ let secondsLeft = 60;
 let yourScore = 0;
 const questionList = [
   {
-    title: "Why won't I show up1?",
-    opt1: "d",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
+    title:
+      "Spot the Error: Which choice has a mistake that will cause the function to log an error?",
+    opt1: "function displayHighScores() {",
+    opt2: 'let userScore = localStorage.getItem("yourScore"); \n let yourInitials = localStorage.getItem("yourInitials");',
+    opt3: 'if (yourInitials !== null) { \nlet writingInitials = document.createElement("p"); writingInitials.textContent\n "Player: " + \nmyInitials + "   Score: " + myScore;',
+    opt4: 'document.getElementById("leaderboard").append(writingInitials);} else return;\n}',
+    answer: 3,
+  },
+  {
+    title: "What are the three types of variables used in JS?",
+    opt1: "Your Mom's Variables",
+    opt2: "var, type, const",
+    opt3: "var, let, const",
+    opt4: "You cannot set variables in JS",
     answer: 2,
   },
   {
-    title: "Why won't I show up2?",
-    opt1: "c",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 2,
-  },
-  {
-    title: "Why won't I show up?3",
-    opt1: "b",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
-    answer: 1,
+    title: "Why did the author include four questions in this quiz?",
+    opt1: "He just likes even numbers",
+    opt2: "He saw the mock-up had four questions",
+    opt3: "Four minus One is Three.",
+    opt4: "There's no logical reason because the AC does not set a required number of questions.",
+    answer: 4,
     // correct: Q2.opt3,
   },
   {
-    title: "Why won't I show up?4",
-    opt1: "a",
-    opt2: "purple",
-    opt3: "green",
-    opt4: "red",
+    title:
+      "If a cow could write in JS, how would it use JS to make an interactive website?",
+    opt1: "set up a fund to put up more fences",
+    opt2: "Create a form to hire a bodyguard to protect cows for when it's you know...that time for a cow to become steak",
+    opt3: "Educate kids on how chocolate milk comes from a chocolate cow using eventlisteners",
+    opt4: "set up a chicken world domination forum",
     answer: 2,
   },
 ];
@@ -248,8 +250,8 @@ submit.addEventListener("click", function () {
   }
 });
 
-// toggle HighScores Button
-const getHS = document.getElementById("toggle-HS");
+// toggle HighScores Button future feature tbd
+// const getHS = document.getElementById("toggle-HS");
 // getHS.addEventListener("click", function () {
 //   getHS.classList.remove("hide");
 // });

@@ -24,7 +24,7 @@ function displayHighScores() {
   } else return;
 }
 
-Spot the Error:
+Spot the Error: Which choice has a mistake that will cause the function to log an error?
 A. function displayHighScores() {
 B. let userScore = localStorage.getItem("yourScore");
   let yourInitials = localStorage.getItem("yourInitials");
@@ -33,7 +33,7 @@ C. if (yourInitials !== null) {
     writingInitials.textContent =
       "Player: " + myInitials + "   Score: " + myScore;
    
-D.   document.getElementById("leaderboard").append(writingInitials);
+D.   document.getElementById(\"leaderboard\").append(writingInitials);
   } else return;
 }
 
