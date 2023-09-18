@@ -2,7 +2,7 @@
 
 ## Description
 
-The user is presented with instructions to utilize this site. Users will have 60 seconds to answer four multiple choice questions regarding Javascript. Each question will appear only after an answer has been selecting beginning with the first question. Through this challenge, I have learned how utilize timers, manipulate the DOM, and leverage eventlisteners in production.
+The user is presented with instructions to utilize this site. Users will have 60 seconds to answer four multiple choice questions regarding Javascript. Each question will appear only after an answer has been selecting beginning with the first question. Through this challenge, I have learned how utilize the API to create timers, manipulate the DOM, and leverage eventlisteners in production.
 
 ## Usage
 
