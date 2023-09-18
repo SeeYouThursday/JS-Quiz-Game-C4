@@ -80,12 +80,7 @@ function setTime() {
   }, 1000);
 }
 
-function getGoodMessage() {
-  const youSuck = document.createElement("h3");
-  youSuck.textContent = "Get Rekt, Loser!";
-  const header = document.getElementsByName("header");
-  youSuck.append(header);
-}
+// below is to offset the timer at the end - time would run one second after answering last question - this is the fix
 function offSetTimeDelay() {
   if (secondsLeft !== 0) {
     secondsLeft += 1;
@@ -103,13 +98,11 @@ function endGame() {
   let finalScore = secondsLeft + yourScore;
   scoreText.textContent = finalScore;
   timer.textContent = "Time: " + secondsLeft + " seconds";
-  // scoreText.classList.remove("hide");
   collectHighscore.classList.remove("hide");
   checkInput();
   document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
     if (initials.value !== "") {
-      // let storeScore = finalScore;
       let initialsSet = initials.value;
       localStorage.setItem("yourScore", finalScore);
       localStorage.setItem("yourInitials", initialsSet);
@@ -212,17 +205,6 @@ const nextQuestion = (event) =>
     } else QuestionDisplay();
   }, 1000);
 
-const outOfTime = () => {
-  setTimeout(() => {
-    if (secondsLeft == 0 && questionList.length !== 0) {
-      clearInterval(timerInterval, 0);
-      startQs.setAttribute("style", "display:none");
-      endGame();
-      getGoodMessage();
-    }
-  }, 1000);
-};
-
 // userchoice event listeners
 choice1.addEventListener("click", function (event) {
   checkAnswers(event);
@@ -251,6 +233,7 @@ reset.addEventListener("click", function (event) {
   submit.setAttribute("disabled", "false");
 });
 
+// check for user input in highscore submission
 submit.addEventListener("click", function () {
   if (initials.value === "") {
     alert("Hey, dummy! Enter your initials!");
