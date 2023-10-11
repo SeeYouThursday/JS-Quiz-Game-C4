@@ -24,7 +24,7 @@ To utilize this Javascript Review Quiz, simply click "start" after reviewing the
 	<img height="30" src="https://img.shields.io/badge/html-6DA55F?style=for-the-badge&logo=html&logoColor=white" alt="Git" title="Git" />
   <img height="30" src="https://img.shields.io/badge/css-%23563D7C.svg?style=for-the-badge&logo=css&logoColor=white" alt="Git" title="Git" />
   <img height="30" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="Git" title="Git" /> 
-  <img height="30" src="https://raw.githubusercontent.com/Hopding/pdf-lib-docs/master/assets/logo-full.svg?sanitize=true" alt="Git" title="Git" />
+ 
   <img height="30" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="GIT" title="GIT" /> 
   <img height="30" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github" title="Github" /> 
 	</div>
